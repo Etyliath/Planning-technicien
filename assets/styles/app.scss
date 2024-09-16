@@ -51,5 +51,13 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  color: #00456E;
+  background: linear-gradient(to bottom right,white, $secondary);
+  //color: #00456E;
 }
+
+@media screen and (max-width: 768px) {
+  body{
+    font-size: small;
+  }
+}
+
