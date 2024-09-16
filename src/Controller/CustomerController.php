@@ -15,9 +15,10 @@ use Symfony\Component\Routing\Attribute\Route;
 class CustomerController extends AbstractController
 {
     #[Route('/customers', name: 'customers.index', methods: ['GET'])]
-    public function index(CustomerRepository $repository): Response
+    public function index(CustomerRepository $repository, Request $request): Response
     {
-        $customers = $repository->findAll();
+        $page = $request->query->getInt('page', 1);
+        $customers = $repository->paginateCustomers($page);
         return $this->render('customer/index.html.twig', [
             'customers' => $customers,
         ]);
